@@ -7,19 +7,35 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.blue)
+
+
+struct ProminentTitle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.blue)
     }
 }
 
-#Preview {
-    ContentView()
+extension View {
+    func prominentTitleStyle() -> some View {
+        self.modifier(ProminentTitle())
+    }
+}
+
+struct ContentView: View {
+
+    var body: some View {
+        VStack {
+            Text("Hello, world!")
+                .prominentTitleStyle()
+        }
+        .foregroundColor(.black)
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
